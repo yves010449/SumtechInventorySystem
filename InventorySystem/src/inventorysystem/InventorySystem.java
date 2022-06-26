@@ -14,7 +14,11 @@ public class InventorySystem {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        HomeGUI home = new HomeGUI();
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new InventoryHome().setVisible(true);
+            }
+        });
     }
     
 }
