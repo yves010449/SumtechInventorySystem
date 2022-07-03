@@ -10,13 +10,15 @@ package inventorysystem;
  */
 public class InventorySystem {
 
-    /**
-     * @param args the command line arguments
-     */
+/* TODO
+    make location center
+    disable main frame when using add
+    */
+    
     public static void main(String[] args) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new InventoryHome().setVisible(true);
+                new MainPageGUI().setVisible(true);
             }
         });
     }

@@ -3,18 +3,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package inventorysystem;
-
 /**
  *
  * @author yves0
  */
-public class InventoryHome extends javax.swing.JFrame {
+public class MainPageGUI extends javax.swing.JFrame {
 
     /**
      * Creates new form InventoryHome
      */
-    public InventoryHome() {
-        initComponents();
+    public MainPageGUI() {
+        initComponents();     
     }
 
     /**
@@ -25,33 +24,26 @@ public class InventoryHome extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
-        popupMenu1 = new java.awt.PopupMenu();
         jPanel1 = new javax.swing.JPanel();
         IconLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        InventoryTable = new javax.swing.JTable();
         BottomPanel = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
 
-        popupMenu1.setLabel("popupMenu1");
-        popupMenu1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                popupMenu1ActionPerformed(evt);
-            }
-        });
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Sumtech Inventory System");
+        setLocation(new java.awt.Point(0, 0));
+        setLocationByPlatform(true);
         setPreferredSize(new java.awt.Dimension(800, 600));
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 102));
         jPanel1.setPreferredSize(new java.awt.Dimension(200, 120));
 
         IconLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/inventorysystem/Res/IconSumtech.png"))); // NOI18N
-        IconLabel.setPreferredSize(new java.awt.Dimension(100, 100));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -59,39 +51,25 @@ public class InventoryHome extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(IconLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(IconLabel)
                 .addContainerGap(340, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(IconLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(IconLabel)
                 .addContainerGap())
         );
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.PAGE_START);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6"
-            }
-        ));
-        jTable1.setFillsViewportHeight(true);
-        jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jTable1.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(jTable1);
-        jTable1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        InventoryTable.setModel(new InventoryTable());
+        InventoryTable.setFillsViewportHeight(true);
+        InventoryTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        InventoryTable.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(InventoryTable);
+        InventoryTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
         getContentPane().add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
@@ -126,16 +104,14 @@ public class InventoryHome extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        System.out.println("add");
+        System.out.println("add");     
+        new AddGUI().setVisible(true);
+        //setEnabled(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         System.out.println("aa");             
     }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void popupMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_popupMenu1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_popupMenu1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -145,12 +121,11 @@ public class InventoryHome extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel BottomPanel;
     private javax.swing.JLabel IconLabel;
+    private javax.swing.JTable InventoryTable;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private java.awt.PopupMenu popupMenu1;
     // End of variables declaration//GEN-END:variables
 }
