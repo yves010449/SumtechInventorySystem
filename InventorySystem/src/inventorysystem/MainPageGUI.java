@@ -65,11 +65,13 @@ public class MainPageGUI extends javax.swing.JFrame {
         getContentPane().add(jPanel1, java.awt.BorderLayout.PAGE_START);
 
         InventoryTable.setModel(new InventoryTable());
+        InventoryTable.setColumnSelectionAllowed(true);
+        InventoryTable.setEditingColumn(3);
         InventoryTable.setFillsViewportHeight(true);
         InventoryTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         InventoryTable.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(InventoryTable);
-        InventoryTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        InventoryTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         getContentPane().add(jScrollPane1, java.awt.BorderLayout.CENTER);
 

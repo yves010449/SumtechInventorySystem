@@ -20,6 +20,22 @@ public class InventoryTable extends AbstractTableModel {
     private Object[][] data = {
         {0, "Laptop", 9000, 2, 2, 1},
         {1, "Radio", 6000, 1, 1, 0},
+        {0, "Laptop", 9000, 2, 2, 1},
+        {1, "Radio", 6000, 1, 1, 0},
+        {0, "Laptop", 9000, 2, 2, 1},
+        {1, "Radio", 6000, 1, 1, 0},
+        {0, "Laptop", 9000, 2, 2, 1},
+        {1, "Radio", 6000, 1, 1, 0},
+        {0, "Laptop", 9000, 2, 2, 1},
+        {1, "Radio", 6000, 1, 1, 0},
+        {0, "Laptop", 9000, 2, 2, 1},
+        {1, "Radio", 6000, 1, 1, 0},
+        {0, "Laptop", 9000, 2, 2, 1},
+        {1, "Radio", 6000, 1, 1, 0},
+        {0, "Laptop", 9000, 2, 2, 1},
+        {1, "Radio", 6000, 1, 1, 0},
+        {0, "Laptop", 9000, 2, 2, 1},
+        {1, "Radio", 6000, 1, 1, 0},
         {2, "SSD", 1000, 2, 2, 1}
     };
 
@@ -62,5 +78,15 @@ public class InventoryTable extends AbstractTableModel {
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         return data[rowIndex][columnIndex];
+    }
+
+    @Override
+    public boolean isCellEditable(int row, int col) {
+        switch (col) {
+            case 3:
+                return true;
+            default:
+                return false;
+        }
     }
 }

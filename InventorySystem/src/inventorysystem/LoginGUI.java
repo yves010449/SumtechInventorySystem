@@ -37,7 +37,8 @@ public class LoginGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
-        setPreferredSize(new java.awt.Dimension(400, 200));
+        setPreferredSize(new java.awt.Dimension(400, 400));
+        setResizable(false);
 
         TopPanel.setBackground(new java.awt.Color(0, 0, 102));
         TopPanel.setPreferredSize(new java.awt.Dimension(200, 120));
@@ -68,7 +69,6 @@ public class LoginGUI extends javax.swing.JFrame {
         jLabel1.setText("User Name");
         jLabel1.setPreferredSize(new java.awt.Dimension(150, 30));
 
-        jTextField1.setText("jTextField1");
         jTextField1.setPreferredSize(new java.awt.Dimension(150, 30));
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -134,7 +134,8 @@ public class LoginGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        new MainPageGUI().setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

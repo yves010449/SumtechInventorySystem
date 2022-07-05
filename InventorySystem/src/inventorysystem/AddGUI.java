@@ -32,15 +32,29 @@ public class AddGUI extends javax.swing.JFrame {
         ButtonAdd = new javax.swing.JButton();
         ButtonCancel = new javax.swing.JButton();
         CenterPanel = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        ItemNameLabel = new javax.swing.JLabel();
+        ItemNameTextField = new javax.swing.JTextField();
+        SellingLabel = new javax.swing.JLabel();
+        CostTextField = new javax.swing.JTextField();
+        CostLabel = new javax.swing.JLabel();
+        SellingTextField = new javax.swing.JTextField();
+        QuantityLabel = new javax.swing.JLabel();
+        QuantityField = new javax.swing.JPanel();
+        jButton2 = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
+        jButton4 = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        ItemNameLabel1 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
+        ItemNameLabel2 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Add Item");
         setAlwaysOnTop(true);
         setLocationByPlatform(true);
-        setPreferredSize(new java.awt.Dimension(550, 450));
+        setPreferredSize(new java.awt.Dimension(400, 400));
         setResizable(false);
 
         jLabel1.setText("jLabel1");
@@ -53,7 +67,7 @@ public class AddGUI extends javax.swing.JFrame {
         TopPanel.setLayout(TopPanelLayout);
         TopPanelLayout.setHorizontalGroup(
             TopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 446, Short.MAX_VALUE)
         );
         TopPanelLayout.setVerticalGroup(
             TopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -84,35 +98,94 @@ public class AddGUI extends javax.swing.JFrame {
 
         getContentPane().add(BottomPanel, java.awt.BorderLayout.PAGE_END);
 
-        jTextField1.setText("jTextField1");
+        CenterPanel.setLayout(new java.awt.GridLayout(2, 1));
 
-        jTextField2.setText("jTextField2");
+        jPanel1.setLayout(new java.awt.GridLayout(4, 2));
 
-        jTextField3.setText("jTextField3");
+        ItemNameLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        ItemNameLabel.setText("Item Name");
+        jPanel1.add(ItemNameLabel);
 
-        javax.swing.GroupLayout CenterPanelLayout = new javax.swing.GroupLayout(CenterPanel);
-        CenterPanel.setLayout(CenterPanelLayout);
-        CenterPanelLayout.setHorizontalGroup(
-            CenterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(CenterPanelLayout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addGroup(CenterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(292, Short.MAX_VALUE))
-        );
-        CenterPanelLayout.setVerticalGroup(
-            CenterPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(CenterPanelLayout.createSequentialGroup()
-                .addGap(61, 61, 61)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        ItemNameTextField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        ItemNameTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ItemNameTextFieldActionPerformed(evt);
+            }
+        });
+        jPanel1.add(ItemNameTextField);
+
+        SellingLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        SellingLabel.setText("Selling");
+        jPanel1.add(SellingLabel);
+        jPanel1.add(CostTextField);
+
+        CostLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        CostLabel.setText("Cost");
+        jPanel1.add(CostLabel);
+        jPanel1.add(SellingTextField);
+
+        QuantityLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        QuantityLabel.setText("Quantity");
+        jPanel1.add(QuantityLabel);
+
+        QuantityField.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 0, 0));
+
+        jButton2.setText("-1");
+        QuantityField.add(jButton2);
+
+        jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField1.setPreferredSize(new java.awt.Dimension(95, 35));
+        QuantityField.add(jTextField1);
+
+        jButton4.setText("+1");
+        QuantityField.add(jButton4);
+
+        jPanel1.add(QuantityField);
+
+        CenterPanel.add(jPanel1);
+
+        ItemNameLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        ItemNameLabel1.setText("Total Items");
+
+        jTextField2.setEnabled(false);
+
+        ItemNameLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        ItemNameLabel2.setText("Total Inventory");
+
+        jTextField3.setEnabled(false);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(85, 85, 85)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(ItemNameLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ItemNameLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextField2)
+                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(86, Short.MAX_VALUE))
         );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(ItemNameLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(ItemNameLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(30, Short.MAX_VALUE))
+        );
+
+        CenterPanel.add(jPanel3);
 
         getContentPane().add(CenterPanel, java.awt.BorderLayout.CENTER);
 
@@ -127,13 +200,17 @@ public class AddGUI extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_ButtonCancelActionPerformed
 
+    private void ItemNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItemNameTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ItemNameTextFieldActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+        /* If Nimbus (introducedItemNameLabela SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
@@ -167,8 +244,22 @@ public class AddGUI extends javax.swing.JFrame {
     private javax.swing.JButton ButtonAdd;
     private javax.swing.JButton ButtonCancel;
     private javax.swing.JPanel CenterPanel;
+    private javax.swing.JLabel CostLabel;
+    private javax.swing.JTextField CostTextField;
+    private javax.swing.JLabel ItemNameLabel;
+    private javax.swing.JLabel ItemNameLabel1;
+    private javax.swing.JLabel ItemNameLabel2;
+    private javax.swing.JTextField ItemNameTextField;
+    private javax.swing.JPanel QuantityField;
+    private javax.swing.JLabel QuantityLabel;
+    private javax.swing.JLabel SellingLabel;
+    private javax.swing.JTextField SellingTextField;
     private javax.swing.JPanel TopPanel;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
