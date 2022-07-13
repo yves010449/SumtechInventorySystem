@@ -12,34 +12,34 @@ import javax.swing.table.AbstractTableModel;
  */
 public class InventoryTable extends AbstractTableModel {
 
-    private String[] columnNames = {
-        "ID", "NAME", "PRICE", "QUANTITY", "TOTAL INVENTORY", "QUALITY"
-    };
+    private String[] columnNames;
+    private Object[][] data;
 
-    // TableModel's data
-    private Object[][] data = {
-        {0, "Laptop", 9000, 2, 2, 1},
-        {1, "Radio", 6000, 1, 1, 0},
-        {0, "Laptop", 9000, 2, 2, 1},
-        {1, "Radio", 6000, 1, 1, 0},
-        {0, "Laptop", 9000, 2, 2, 1},
-        {1, "Radio", 6000, 1, 1, 0},
-        {0, "Laptop", 9000, 2, 2, 1},
-        {1, "Radio", 6000, 1, 1, 0},
-        {0, "Laptop", 9000, 2, 2, 1},
-        {1, "Radio", 6000, 1, 1, 0},
-        {0, "Laptop", 9000, 2, 2, 1},
-        {1, "Radio", 6000, 1, 1, 0},
-        {0, "Laptop", 9000, 2, 2, 1},
-        {1, "Radio", 6000, 1, 1, 0},
-        {0, "Laptop", 9000, 2, 2, 1},
-        {1, "Radio", 6000, 1, 1, 0},
-        {0, "Laptop", 9000, 2, 2, 1},
-        {1, "Radio", 6000, 1, 1, 0},
-        {2, "SSD", 1000, 2, 2, 1}
-    };
+    ConnectDB db;
+
+    InventoryTable() {
+        fillTable();
+
+    }
+
+    public void fillTable() {
+        db = new ConnectDB();
+        
+        columnNames = new String[db.getColumnCount()];
+        for (int i = 0; i < columnNames.length; i++) {
+            columnNames[i] = db.getSqlColumns(i + 1);
+        }
+        data = new Object[db.getColumnCount()][db.getRowCount()];
+        
+        for (int i = 0; i < getColumnCount(); i++) {
+            for (int j = 0; j < getRowCount(); j++) {
+                data[i][j] = db.data[i][j];    
+            }          
+        }
+    }
 
     /**
+     *
      * Returns the number of rows in the table model.
      */
     @Override
@@ -65,12 +65,10 @@ public class InventoryTable extends AbstractTableModel {
 
     /**
      * Returns data type of the column specified by its index.
+     *
+     * @Override public Class<?> getColumnClass(int columnIndex) { return
+     * getValueAt(0, columnIndex).getClass(); }
      */
-    @Override
-    public Class<?> getColumnClass(int columnIndex) {
-        return getValueAt(0, columnIndex).getClass();
-    }
-
     /**
      * Returns the value of a table model at the specified row index and column
      * index.

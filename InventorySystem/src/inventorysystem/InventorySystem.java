@@ -19,6 +19,7 @@ public class InventorySystem {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 //new LoginGUI().setVisible(true);   
+                
                 new MainPageGUI().setVisible(true);
             }
         });
