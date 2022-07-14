@@ -16,10 +16,10 @@ public class InventorySystem {
     */
     
     public static void main(String[] args) {
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                //new LoginGUI().setVisible(true);   
-                
+                //new LoginGUI().setVisible(true);                  
                 new MainPageGUI().setVisible(true);
             }
         });

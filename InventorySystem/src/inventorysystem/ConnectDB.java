@@ -27,17 +27,17 @@ public class ConnectDB {
         try {
             connection = DriverManager.getConnection(jdbcUrl);
 
-            String sql = "CREATE TABLE IF NOT EXISTS people (\n"
-                    + "   person_id INTEGER PRIMARY KEY,\n"
-                    + "   first_name TEXT,\n"
-                    + "   last_name TEXT,\n"
-                    + "   address_id INTEGER,\n"
-                    + "   FOREIGN KEY (address_id) \n"
-                    + "      REFERENCES addresses (address_id)\n"
+            String sql = "CREATE TABLE IF NOT EXISTS Inventory (\n"
+                    + "   name TEXT NOT NULL,\n"
+                    + "   cost INTEGER NOT NULL,\n"
+                    + "   selling INTEGER,\n"
+                    + "   quantity INTEGER(3) NOT NULL,\n"
+                    + "   total_items INTEGER,\n"
+                    + "   total_inventory INTEGER\n"
                     + ");";
-             statement = connection.createStatement();
-             statement.executeUpdate(sql);
-             System.out.println("database created");
+            statement = connection.createStatement();
+            statement.executeUpdate(sql);
+            System.out.println("database created");
 
             data = new Object[getRowCount()][getColumnCount()];
             getSqlRows(0);
@@ -94,16 +94,29 @@ public class ConnectDB {
 
             while (result.next()) {
                 data[i][0] = result.getString("name");
-                data[i][1] = result.getString("price");
-                data[i][2] = result.getString("Cost");
+                data[i][1] = result.getString("cost");
+                data[i][2] = result.getString("selling");
+                data[i][3] = result.getString("quantity");
+                data[i][4] = result.getString("total_items");
+                data[i][5] = result.getString("total_inventory");
                 i++;
             }
 
         } catch (SQLException ex) {
             //Logger.getLogger(ConnectDB.class.getName()).log(Level.SEVERE, null, ex);
-
         }
         return null;
+    }
+
+    public void insertRowSql(String name, int cost,int selling,int quantity,int total_items,int total_inventory) {
+        try {
+            String sql = "INSERT INTO Inventory VALUES('"+name+"',"+cost+","+selling+","+quantity+","+total_items+","+total_inventory+");";
+            statement = connection.createStatement();
+            statement.executeUpdate(sql);
+            System.out.println("Insert");
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnectDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

@@ -37,7 +37,6 @@ public class MainPageGUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sumtech Inventory System");
         setLocation(new java.awt.Point(0, 0));
-        setLocationByPlatform(true);
         setPreferredSize(new java.awt.Dimension(800, 600));
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 102));
