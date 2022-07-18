@@ -5,6 +5,7 @@
 package inventorysystem;
 
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 
 /**
  *
@@ -12,7 +13,7 @@ import javax.swing.JOptionPane;
  */
 public class AddGUI extends javax.swing.JFrame {
 
-    //ConnectDB db = new InventoryTable().db; 
+    ConnectDB db = new InventorySystem().db;  
     
     public AddGUI() {
         initComponents();
@@ -213,6 +214,7 @@ public class AddGUI extends javax.swing.JFrame {
         getContentPane().add(CenterPanel, java.awt.BorderLayout.CENTER);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void ButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAddActionPerformed
@@ -223,7 +225,7 @@ public class AddGUI extends javax.swing.JFrame {
         else if(CostTextField.getText().equals("")){
             JOptionPane.showMessageDialog(CenterPanel,"Cost cannot be empty.","Alert",JOptionPane.WARNING_MESSAGE);
         }
-        else if(SellingTextField.getText().equals("")){
+        else if(CostTextField.getText().equals("")){
             JOptionPane.showMessageDialog(CenterPanel,"Selling cannot be empty.","Alert",JOptionPane.WARNING_MESSAGE);
         }
         else if(QuantityText.getText().equals("")){
@@ -233,7 +235,17 @@ public class AddGUI extends javax.swing.JFrame {
             
             db.insertRowSql(ItemNameTextField.getText(), Integer.valueOf(CostTextField.getText())
             , Integer.valueOf(SellingTextField.getText()), Integer.valueOf(QuantityText.getText()), 0, 0);
-            dispose();
+            dispose();           
+         JTable g = new MainPageGUI().InventoryTable;
+         InventoryTable iT = new InventoryTable();
+         iT.fillTable();
+         g.setModel(iT);
+         g.repaint();
+          
+            
+                   
+            
+            
         }
     }//GEN-LAST:event_ButtonAddActionPerformed
 

@@ -7,13 +7,18 @@ package inventorysystem;
  *
  * @author yves0
  */
+import javax.swing.UIManager;
+import javax.swing.UIManager.LookAndFeelInfo;
+
 public class MainPageGUI extends javax.swing.JFrame {
 
     /**
      * Creates new form InventoryHome
      */
     public MainPageGUI() {
-        initComponents();     
+        
+        initComponents();  
+   
     }
 
     /**
@@ -25,6 +30,7 @@ public class MainPageGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jOptionPane1 = new javax.swing.JOptionPane();
         jPanel1 = new javax.swing.JPanel();
         IconLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -63,14 +69,15 @@ public class MainPageGUI extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.PAGE_START);
 
-        InventoryTable.setModel(new InventoryTable());
+        InventoryTable.setModel(new InventoryTable()
+        );
         InventoryTable.setColumnSelectionAllowed(true);
         InventoryTable.setEditingColumn(3);
         InventoryTable.setFillsViewportHeight(true);
         InventoryTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         InventoryTable.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(InventoryTable);
-        InventoryTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        InventoryTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 
         getContentPane().add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
@@ -102,6 +109,7 @@ public class MainPageGUI extends javax.swing.JFrame {
         BottomPanel.getAccessibleContext().setAccessibleName("BottomPanel");
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -111,21 +119,24 @@ public class MainPageGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        System.out.println("aa");             
+        System.out.println("aa");  
+        
     }//GEN-LAST:event_jButton2ActionPerformed
+
 
     /**
      * @param args the command line arguments
      */
 
-
+InventoryTable a;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel BottomPanel;
     private javax.swing.JLabel IconLabel;
-    private javax.swing.JTable InventoryTable;
+    public javax.swing.JTable InventoryTable;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JOptionPane jOptionPane1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
