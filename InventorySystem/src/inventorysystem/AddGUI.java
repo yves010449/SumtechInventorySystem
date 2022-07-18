@@ -5,7 +5,6 @@
 package inventorysystem;
 
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 
 /**
  *
@@ -13,7 +12,11 @@ import javax.swing.JTable;
  */
 public class AddGUI extends javax.swing.JFrame {
 
-    ConnectDB db = new InventorySystem().db;  
+<<<<<<< HEAD
+    ConnectDB db = new InventoryTable().db; 
+=======
+    //ConnectDB db = new InventoryTable().db; 
+>>>>>>> parent of 73dbd1e (0.3.2)
     
     public AddGUI() {
         initComponents();
@@ -214,7 +217,6 @@ public class AddGUI extends javax.swing.JFrame {
         getContentPane().add(CenterPanel, java.awt.BorderLayout.CENTER);
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void ButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAddActionPerformed
@@ -225,7 +227,7 @@ public class AddGUI extends javax.swing.JFrame {
         else if(CostTextField.getText().equals("")){
             JOptionPane.showMessageDialog(CenterPanel,"Cost cannot be empty.","Alert",JOptionPane.WARNING_MESSAGE);
         }
-        else if(CostTextField.getText().equals("")){
+        else if(SellingTextField.getText().equals("")){
             JOptionPane.showMessageDialog(CenterPanel,"Selling cannot be empty.","Alert",JOptionPane.WARNING_MESSAGE);
         }
         else if(QuantityText.getText().equals("")){
@@ -235,17 +237,7 @@ public class AddGUI extends javax.swing.JFrame {
             
             db.insertRowSql(ItemNameTextField.getText(), Integer.valueOf(CostTextField.getText())
             , Integer.valueOf(SellingTextField.getText()), Integer.valueOf(QuantityText.getText()), 0, 0);
-            dispose();           
-         JTable g = new MainPageGUI().InventoryTable;
-         InventoryTable iT = new InventoryTable();
-         iT.fillTable();
-         g.setModel(iT);
-         g.repaint();
-          
-            
-                   
-            
-            
+            dispose();
         }
     }//GEN-LAST:event_ButtonAddActionPerformed
 
