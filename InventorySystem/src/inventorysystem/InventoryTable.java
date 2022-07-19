@@ -14,8 +14,7 @@ public class InventoryTable extends AbstractTableModel {
 
     private String[] columnNames;
     private Object[][] data;
-
-    ConnectDB db = new ConnectDB(); 
+    ConnectDB db = InventorySystem.db;
 
     InventoryTable() {
         fillTable();
@@ -23,16 +22,14 @@ public class InventoryTable extends AbstractTableModel {
     }
 
     public void fillTable() {
-         
 
         columnNames = new String[db.getColumnCount()];
         for (int i = 0; i < columnNames.length; i++) {
             columnNames[i] = db.getSqlColumns(i + 1);
         }
-
-        
+        System.out.println("");
         data = new Object[db.getRowCount()][db.getColumnCount()];
-        
+        db.getSqlRows();
         for (int i = 0; i < getRowCount(); i++) {
             System.out.println(i);
             for (int j = 0; j < getColumnCount(); j++) {

@@ -38,9 +38,9 @@ public class ConnectDB {
             statement = connection.createStatement();
             statement.executeUpdate(sql);
             System.out.println("database created");
-
-            data = new Object[getRowCount()][getColumnCount()];
-            getSqlRows(0);
+            
+            
+            
 
         } catch (SQLException ex) {
             System.out.println("Connection Error");
@@ -86,12 +86,13 @@ public class ConnectDB {
         return null;
     }
 
-    public String getSqlRows(int i) {
+    public String getSqlRows() {
         try {
+            data = new Object[getRowCount()][getColumnCount()];
             String sql = "Select * FROM Inventory";
             statement = connection.createStatement();
             result = statement.executeQuery(sql);
-
+            int i = 0;
             while (result.next()) {
                 data[i][0] = result.getString("name");
                 data[i][1] = result.getString("cost");

@@ -12,11 +12,9 @@ import javax.swing.JOptionPane;
  */
 public class AddGUI extends javax.swing.JFrame {
 
-<<<<<<< HEAD
+
     ConnectDB db = new InventoryTable().db; 
-=======
-    //ConnectDB db = new InventoryTable().db; 
->>>>>>> parent of 73dbd1e (0.3.2)
+
     
     public AddGUI() {
         initComponents();
