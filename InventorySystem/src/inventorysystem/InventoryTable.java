@@ -27,11 +27,11 @@ public class InventoryTable extends AbstractTableModel {
         for (int i = 0; i < columnNames.length; i++) {
             columnNames[i] = db.getSqlColumns(i + 1);
         }
-        System.out.println("");
+        
         data = new Object[db.getRowCount()][db.getColumnCount()];
         db.getSqlRows();
         for (int i = 0; i < getRowCount(); i++) {
-            System.out.println(i);
+            
             for (int j = 0; j < getColumnCount(); j++) {
                 data[i][j] = db.data[i][j];
             }

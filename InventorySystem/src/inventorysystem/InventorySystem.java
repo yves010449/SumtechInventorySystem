@@ -14,7 +14,7 @@ import javax.swing.UIManager.LookAndFeelInfo;
 public class InventorySystem {
 
     /* TODO
-    make location center
+    
     disable main frame when using add
      */
     static ConnectDB db;

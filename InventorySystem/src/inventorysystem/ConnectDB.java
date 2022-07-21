@@ -38,9 +38,7 @@ public class ConnectDB {
             statement = connection.createStatement();
             statement.executeUpdate(sql);
             System.out.println("database created");
-            
-            
-            
+            getSqlRows();
 
         } catch (SQLException ex) {
             System.out.println("Connection Error");
@@ -88,8 +86,8 @@ public class ConnectDB {
 
     public String getSqlRows() {
         try {
-            data = new Object[getRowCount()][getColumnCount()];
-            String sql = "Select * FROM Inventory";
+            data = new Object[getRowCount()][getColumnCount()+1];
+            String sql = "Select rowid, * FROM Inventory";
             statement = connection.createStatement();
             result = statement.executeQuery(sql);
             int i = 0;
@@ -100,18 +98,21 @@ public class ConnectDB {
                 data[i][3] = result.getString("quantity");
                 data[i][4] = result.getString("total_items");
                 data[i][5] = result.getString("total_inventory");
+                data[i][6] = result.getString("rowid");
                 i++;
+
             }
 
         } catch (SQLException ex) {
-            //Logger.getLogger(ConnectDB.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ConnectDB.class.getName()).log(Level.SEVERE, null, ex);
+            
         }
         return null;
     }
 
-    public void insertRowSql(String name, int cost,int selling,int quantity,int total_items,int total_inventory) {
+    public void insertRowSql(String name, int cost, int selling, int quantity, int total_items, int total_inventory) {
         try {
-            String sql = "INSERT INTO Inventory VALUES('"+name+"',"+cost+","+selling+","+quantity+","+total_items+","+total_inventory+");";
+            String sql = "INSERT INTO Inventory VALUES('" + name + "'," + cost + "," + selling + "," + quantity + "," + total_items + "," + total_inventory + ");";
             statement = connection.createStatement();
             statement.executeUpdate(sql);
             System.out.println("Insert");
@@ -120,4 +121,16 @@ public class ConnectDB {
         }
     }
 
+    public void deleteRow(String id) {
+        try {
+            
+            String sql = "DELETE  FROM Inventory\n"
+                    + "WHERE rowid = "+id+";";
+            statement = connection.createStatement();
+            statement.executeUpdate(sql);
+            System.out.println("Delete sql");
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnectDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
