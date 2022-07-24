@@ -28,11 +28,12 @@ public class ConnectDB {
             connection = DriverManager.getConnection(jdbcUrl);
 
             String sql = "CREATE TABLE IF NOT EXISTS Inventory (\n"
+                    + "   ID INTEGER PRIMARY KEY AUTOINCREMENT,\n"
                     + "   name TEXT NOT NULL,\n"
+                    + "   type TEXT ,\n"
                     + "   cost INTEGER NOT NULL,\n"
                     + "   selling INTEGER,\n"
                     + "   quantity INTEGER(3) NOT NULL,\n"
-                    + "   total_items INTEGER,\n"
                     + "   total_inventory INTEGER\n"
                     + ");";
             statement = connection.createStatement();
@@ -86,33 +87,33 @@ public class ConnectDB {
 
     public String getSqlRows() {
         try {
-            data = new Object[getRowCount()][getColumnCount()+1];
+            data = new Object[getRowCount()][getColumnCount() + 1];
             String sql = "Select rowid, * FROM Inventory";
             statement = connection.createStatement();
             result = statement.executeQuery(sql);
             int i = 0;
             while (result.next()) {
-                data[i][0] = result.getString("name");
-                data[i][1] = result.getString("cost");
-                data[i][2] = result.getString("selling");
-                data[i][3] = result.getString("quantity");
-                data[i][4] = result.getString("total_items");
-                data[i][5] = result.getString("total_inventory");
-                data[i][6] = result.getString("rowid");
+                data[i][0] = result.getString("ID");
+                data[i][1] = result.getString("name");
+                data[i][2] = result.getString("type");
+                data[i][3] = result.getString("cost");
+                data[i][4] = result.getString("selling");
+                data[i][5] = result.getString("quantity");
+                data[i][6] = result.getString("total_inventory");
                 i++;
 
             }
 
         } catch (SQLException ex) {
             Logger.getLogger(ConnectDB.class.getName()).log(Level.SEVERE, null, ex);
-            
+
         }
         return null;
     }
 
-    public void insertRowSql(String name, int cost, int selling, int quantity, int total_items, int total_inventory) {
+    public void insertRowSql(String name, String type, int cost, int selling, int quantity, int total_inventory) {
         try {
-            String sql = "INSERT INTO Inventory VALUES('" + name + "'," + cost + "," + selling + "," + quantity + "," + total_items + "," + total_inventory + ");";
+            String sql = "INSERT INTO Inventory (name,type,cost,selling,quantity,total_inventory)VALUES('" + name + "','" + type + "'," + cost + "," + selling + "," + quantity + "," + total_inventory + ");";
             statement = connection.createStatement();
             statement.executeUpdate(sql);
             System.out.println("Insert");
@@ -123,9 +124,9 @@ public class ConnectDB {
 
     public void deleteRow(String id) {
         try {
-            
+
             String sql = "DELETE  FROM Inventory\n"
-                    + "WHERE rowid = "+id+";";
+                    + "WHERE ID = " + id + ";";
             statement = connection.createStatement();
             statement.executeUpdate(sql);
             System.out.println("Delete sql");
@@ -133,4 +134,24 @@ public class ConnectDB {
             Logger.getLogger(ConnectDB.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    public String getLastRowID() {
+        try {
+            data = new Object[getRowCount()][getColumnCount() + 1];
+            String sql = "Select rowid, * FROM Inventory";
+            statement = connection.createStatement();
+            result = statement.executeQuery(sql);
+            int i = 0;
+            while (result.next()) {
+                data[i][0] = result.getString("ID");
+                i++;
+            }
+            return data[i - 1][0].toString();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnectDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
 }

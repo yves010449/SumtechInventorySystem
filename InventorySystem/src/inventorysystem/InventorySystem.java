@@ -14,7 +14,8 @@ import javax.swing.UIManager.LookAndFeelInfo;
 public class InventorySystem {
 
     /* TODO
-    
+    no records text 
+    confirm dialogue delete
     disable main frame when using add
      */
     static ConnectDB db;

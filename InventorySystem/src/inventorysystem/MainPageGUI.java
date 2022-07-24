@@ -4,6 +4,7 @@
  */
 package inventorysystem;
 
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -13,13 +14,12 @@ import javax.swing.table.DefaultTableModel;
  */
 public class MainPageGUI extends javax.swing.JFrame {
 
-    ConnectDB db = new InventoryTable().db;
+    ConnectDB db = new InventorySystem().db;
     DefaultTableModel tblModel;
 
     public MainPageGUI() {
         initComponents();
         tblModel = (DefaultTableModel) InventoryTable.getModel();
-//        System.out.println(db.data[2][6]);
         db.getSqlRows();
     }
 
@@ -32,374 +32,20 @@ public class MainPageGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDialogAdd = new javax.swing.JDialog();
-        TopPanelAdd = new javax.swing.JPanel();
-        BottomPanelAdd = new javax.swing.JPanel();
-        ButtonAddAdd = new javax.swing.JButton();
-        ButtonCancelAdd = new javax.swing.JButton();
-        CenterPanelAdd = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        ItemNameLabel = new javax.swing.JLabel();
-        ItemNameTextField = new javax.swing.JTextField();
-        CostLabel = new javax.swing.JLabel();
-        CostTextField = new javax.swing.JTextField();
-        SellingLabel = new javax.swing.JLabel();
-        SellingTextField = new javax.swing.JTextField();
-        QuantityLabel = new javax.swing.JLabel();
-        QuantityField = new javax.swing.JPanel();
-        jButtonMinus = new javax.swing.JButton();
-        QuantityText = new javax.swing.JTextField();
-        jButtonPlus = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
-        ItemNameLabel1 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        ItemNameLabel2 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jDialogUpdate = new javax.swing.JDialog();
-        TopPanelAdd1 = new javax.swing.JPanel();
-        BottomPanelAdd1 = new javax.swing.JPanel();
-        ButtonAddUpdate = new javax.swing.JButton();
-        ButtonCancelUpdate = new javax.swing.JButton();
-        CenterPanelAdd1 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
-        ItemNameLabel3 = new javax.swing.JLabel();
-        ItemNameTextFieldUpdate = new javax.swing.JTextField();
-        CostLabel1 = new javax.swing.JLabel();
-        CostTextFieldUpdate = new javax.swing.JTextField();
-        SellingLabel1 = new javax.swing.JLabel();
-        SellingTextFieldUpdate = new javax.swing.JTextField();
-        QuantityLabel1 = new javax.swing.JLabel();
-        QuantityFieldUpdate = new javax.swing.JPanel();
-        jButtonMinus1 = new javax.swing.JButton();
-        QuantityText1 = new javax.swing.JTextField();
-        jButtonPlus1 = new javax.swing.JButton();
-        jPanel5 = new javax.swing.JPanel();
-        ItemNameLabel4 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        ItemNameLabel5 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         IconLabel = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         InventoryTable = new javax.swing.JTable();
         BottomPanel = new javax.swing.JPanel();
+        ButtonPanel = new javax.swing.JPanel();
         jButtonAdd = new javax.swing.JButton();
         jButtonUpdate = new javax.swing.JButton();
         jButtonDelete = new javax.swing.JButton();
-
-        jDialogAdd.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        jDialogAdd.setTitle("Add Item");
-        jDialogAdd.setAlwaysOnTop(true);
-        jDialogAdd.setBounds(new java.awt.Rectangle(0, 0, 360, 360));
-        jDialogAdd.setMinimumSize(new java.awt.Dimension(446, 360));
-
-        TopPanelAdd.setBackground(new java.awt.Color(0, 0, 102));
-        TopPanelAdd.setPreferredSize(new java.awt.Dimension(30, 30));
-
-        javax.swing.GroupLayout TopPanelAddLayout = new javax.swing.GroupLayout(TopPanelAdd);
-        TopPanelAdd.setLayout(TopPanelAddLayout);
-        TopPanelAddLayout.setHorizontalGroup(
-            TopPanelAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 446, Short.MAX_VALUE)
-        );
-        TopPanelAddLayout.setVerticalGroup(
-            TopPanelAddLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 30, Short.MAX_VALUE)
-        );
-
-        jDialogAdd.getContentPane().add(TopPanelAdd, java.awt.BorderLayout.PAGE_START);
-
-        BottomPanelAdd.setBackground(new java.awt.Color(0, 0, 102));
-        BottomPanelAdd.setPreferredSize(new java.awt.Dimension(50, 50));
-        BottomPanelAdd.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 10, 12));
-
-        ButtonAddAdd.setText("Add");
-        ButtonAddAdd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonAddAddActionPerformed(evt);
-            }
-        });
-        BottomPanelAdd.add(ButtonAddAdd);
-
-        ButtonCancelAdd.setText("Cancel");
-        ButtonCancelAdd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonCancelAddActionPerformed(evt);
-            }
-        });
-        BottomPanelAdd.add(ButtonCancelAdd);
-
-        jDialogAdd.getContentPane().add(BottomPanelAdd, java.awt.BorderLayout.PAGE_END);
-
-        CenterPanelAdd.setLayout(new java.awt.GridLayout(2, 1));
-
-        jPanel2.setLayout(new java.awt.GridLayout(4, 2));
-
-        ItemNameLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        ItemNameLabel.setText("Item Name");
-        jPanel2.add(ItemNameLabel);
-
-        ItemNameTextField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jPanel2.add(ItemNameTextField);
-
-        CostLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        CostLabel.setText("Cost");
-        jPanel2.add(CostLabel);
-
-        CostTextField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                CostTextFieldKeyTyped(evt);
-            }
-        });
-        jPanel2.add(CostTextField);
-
-        SellingLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        SellingLabel.setText("Selling");
-        jPanel2.add(SellingLabel);
-
-        SellingTextField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                SellingTextFieldKeyTyped(evt);
-            }
-        });
-        jPanel2.add(SellingTextField);
-
-        QuantityLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        QuantityLabel.setText("Quantity");
-        jPanel2.add(QuantityLabel);
-
-        QuantityField.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 0, 0));
-
-        jButtonMinus.setText("-1");
-        jButtonMinus.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonMinusActionPerformed(evt);
-            }
-        });
-        QuantityField.add(jButtonMinus);
-
-        QuantityText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        QuantityText.setPreferredSize(new java.awt.Dimension(95, 35));
-        QuantityText.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                QuantityTextKeyTyped(evt);
-            }
-        });
-        QuantityField.add(QuantityText);
-
-        jButtonPlus.setText("+1");
-        jButtonPlus.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonPlusActionPerformed(evt);
-            }
-        });
-        QuantityField.add(jButtonPlus);
-
-        jPanel2.add(QuantityField);
-
-        CenterPanelAdd.add(jPanel2);
-
-        ItemNameLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        ItemNameLabel1.setText("Total Items");
-
-        jTextField2.setEnabled(false);
-
-        ItemNameLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        ItemNameLabel2.setText("Total Inventory");
-
-        jTextField3.setEnabled(false);
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(85, 85, 85)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(ItemNameLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ItemNameLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField2)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(86, Short.MAX_VALUE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(ItemNameLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(ItemNameLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(30, Short.MAX_VALUE))
-        );
-
-        CenterPanelAdd.add(jPanel3);
-
-        jDialogAdd.getContentPane().add(CenterPanelAdd, java.awt.BorderLayout.CENTER);
-
-        jDialogUpdate.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        jDialogUpdate.setTitle("Add Item");
-        jDialogUpdate.setAlwaysOnTop(true);
-        jDialogUpdate.setBounds(new java.awt.Rectangle(0, 0, 360, 360));
-        jDialogUpdate.setMinimumSize(new java.awt.Dimension(446, 360));
-
-        TopPanelAdd1.setBackground(new java.awt.Color(0, 0, 102));
-        TopPanelAdd1.setPreferredSize(new java.awt.Dimension(30, 30));
-
-        javax.swing.GroupLayout TopPanelAdd1Layout = new javax.swing.GroupLayout(TopPanelAdd1);
-        TopPanelAdd1.setLayout(TopPanelAdd1Layout);
-        TopPanelAdd1Layout.setHorizontalGroup(
-            TopPanelAdd1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 446, Short.MAX_VALUE)
-        );
-        TopPanelAdd1Layout.setVerticalGroup(
-            TopPanelAdd1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 30, Short.MAX_VALUE)
-        );
-
-        jDialogUpdate.getContentPane().add(TopPanelAdd1, java.awt.BorderLayout.PAGE_START);
-
-        BottomPanelAdd1.setBackground(new java.awt.Color(0, 0, 102));
-        BottomPanelAdd1.setPreferredSize(new java.awt.Dimension(50, 50));
-        BottomPanelAdd1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 10, 12));
-
-        ButtonAddUpdate.setText("Add");
-        ButtonAddUpdate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonAddUpdateActionPerformed(evt);
-            }
-        });
-        BottomPanelAdd1.add(ButtonAddUpdate);
-
-        ButtonCancelUpdate.setText("Cancel");
-        ButtonCancelUpdate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonCancelUpdateActionPerformed(evt);
-            }
-        });
-        BottomPanelAdd1.add(ButtonCancelUpdate);
-
-        jDialogUpdate.getContentPane().add(BottomPanelAdd1, java.awt.BorderLayout.PAGE_END);
-
-        CenterPanelAdd1.setLayout(new java.awt.GridLayout(2, 1));
-
-        jPanel4.setLayout(new java.awt.GridLayout(4, 2));
-
-        ItemNameLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        ItemNameLabel3.setText("Item Name");
-        jPanel4.add(ItemNameLabel3);
-
-        ItemNameTextFieldUpdate.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jPanel4.add(ItemNameTextFieldUpdate);
-
-        CostLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        CostLabel1.setText("Cost");
-        jPanel4.add(CostLabel1);
-
-        CostTextFieldUpdate.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                CostTextFieldUpdateKeyTyped(evt);
-            }
-        });
-        jPanel4.add(CostTextFieldUpdate);
-
-        SellingLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        SellingLabel1.setText("Selling");
-        jPanel4.add(SellingLabel1);
-
-        SellingTextFieldUpdate.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                SellingTextFieldUpdateKeyTyped(evt);
-            }
-        });
-        jPanel4.add(SellingTextFieldUpdate);
-
-        QuantityLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        QuantityLabel1.setText("Quantity");
-        jPanel4.add(QuantityLabel1);
-
-        QuantityFieldUpdate.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 0, 0));
-
-        jButtonMinus1.setText("-1");
-        jButtonMinus1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonMinus1ActionPerformed(evt);
-            }
-        });
-        QuantityFieldUpdate.add(jButtonMinus1);
-
-        QuantityText1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        QuantityText1.setPreferredSize(new java.awt.Dimension(95, 35));
-        QuantityText1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                QuantityText1KeyTyped(evt);
-            }
-        });
-        QuantityFieldUpdate.add(QuantityText1);
-
-        jButtonPlus1.setText("+1");
-        jButtonPlus1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonPlus1ActionPerformed(evt);
-            }
-        });
-        QuantityFieldUpdate.add(jButtonPlus1);
-
-        jPanel4.add(QuantityFieldUpdate);
-
-        CenterPanelAdd1.add(jPanel4);
-
-        ItemNameLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        ItemNameLabel4.setText("Total Items");
-
-        jTextField4.setEnabled(false);
-
-        ItemNameLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        ItemNameLabel5.setText("Total Inventory");
-
-        jTextField5.setEnabled(false);
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(85, 85, 85)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(ItemNameLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ItemNameLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField4)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(86, Short.MAX_VALUE))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(ItemNameLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(ItemNameLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(30, Short.MAX_VALUE))
-        );
-
-        CenterPanelAdd1.add(jPanel5);
-
-        jDialogUpdate.getContentPane().add(CenterPanelAdd1, java.awt.BorderLayout.CENTER);
+        NumbersPanel = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sumtech Inventory System");
@@ -422,7 +68,7 @@ public class MainPageGUI extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(IconLabel)
                 .addContainerGap())
@@ -433,11 +79,17 @@ public class MainPageGUI extends javax.swing.JFrame {
         InventoryTable.setModel(new javax.swing.table.DefaultTableModel(
             db.data,
             new String [] {
-                "Name", "Cost", "Selling", "Quantity", "Total Items", "Total Inventory", "Row Index"
+                "ID", "Name", "Type", "Cost", "Selling", "Quantity", "Total Inventory"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
+                java.lang.Integer.class,
+                java.lang.String.class,
+                java.lang.String.class,
+                java.lang.Integer.class,
+                java.lang.Integer.class,
+                java.lang.Integer.class,
+                java.lang.Integer.class,
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, true, false, false, false
@@ -460,7 +112,8 @@ public class MainPageGUI extends javax.swing.JFrame {
         BottomPanel.setBackground(new java.awt.Color(0, 0, 102));
         BottomPanel.setName("BottomPanel"); // NOI18N
         BottomPanel.setPreferredSize(new java.awt.Dimension(400, 50));
-        BottomPanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+
+        ButtonPanel.setBackground(new java.awt.Color(0, 0, 102));
 
         jButtonAdd.setText("Add");
         jButtonAdd.addActionListener(new java.awt.event.ActionListener() {
@@ -468,7 +121,7 @@ public class MainPageGUI extends javax.swing.JFrame {
                 jButtonAddActionPerformed(evt);
             }
         });
-        BottomPanel.add(jButtonAdd);
+        ButtonPanel.add(jButtonAdd);
 
         jButtonUpdate.setText("Update");
         jButtonUpdate.addActionListener(new java.awt.event.ActionListener() {
@@ -476,7 +129,7 @@ public class MainPageGUI extends javax.swing.JFrame {
                 jButtonUpdateActionPerformed(evt);
             }
         });
-        BottomPanel.add(jButtonUpdate);
+        ButtonPanel.add(jButtonUpdate);
 
         jButtonDelete.setText("Delete");
         jButtonDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -484,7 +137,41 @@ public class MainPageGUI extends javax.swing.JFrame {
                 jButtonDeleteActionPerformed(evt);
             }
         });
-        BottomPanel.add(jButtonDelete);
+        ButtonPanel.add(jButtonDelete);
+
+        NumbersPanel.setPreferredSize(new java.awt.Dimension(201, 100));
+        NumbersPanel.setLayout(new java.awt.GridLayout(2, 2));
+
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel2.setText("Overall Total Inventory:   ");
+        NumbersPanel.add(jLabel2);
+
+        jLabel3.setText("0");
+        NumbersPanel.add(jLabel3);
+
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel6.setText("Overall Total Items:   ");
+        NumbersPanel.add(jLabel6);
+
+        jLabel7.setText("0");
+        NumbersPanel.add(jLabel7);
+
+        javax.swing.GroupLayout BottomPanelLayout = new javax.swing.GroupLayout(BottomPanel);
+        BottomPanel.setLayout(BottomPanelLayout);
+        BottomPanelLayout.setHorizontalGroup(
+            BottomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(BottomPanelLayout.createSequentialGroup()
+                .addComponent(ButtonPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addComponent(NumbersPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        BottomPanelLayout.setVerticalGroup(
+            BottomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(BottomPanelLayout.createSequentialGroup()
+                .addComponent(ButtonPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(NumbersPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
+        );
 
         getContentPane().add(BottomPanel, java.awt.BorderLayout.PAGE_END);
         BottomPanel.getAccessibleContext().setAccessibleName("BottomPanel");
@@ -495,125 +182,29 @@ public class MainPageGUI extends javax.swing.JFrame {
 
     private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed
         System.out.println("add");
-        jDialogAdd.setLocationRelativeTo(null);
-        jDialogAdd.setVisible(true);
+
+        JDialog dialog = new AddDialogue(this, true, db, tblModel);
+        dialog.setVisible(true);
     }//GEN-LAST:event_jButtonAddActionPerformed
 
     private void jButtonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateActionPerformed
         System.out.println("update");
-        //jDialogAdd.setVisible(true);
-        //System.out.println(InventoryTable.getSelectedRow());
+
         System.out.println(tblModel.getValueAt(InventoryTable.getSelectedRow(), 0));
     }//GEN-LAST:event_jButtonUpdateActionPerformed
-//Start of Add Dialogue Components
-    private void ButtonAddAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAddAddActionPerformed
-        if (ItemNameTextField.getText().equals("")) {
-            JOptionPane.showMessageDialog(CenterPanelAdd, "Item name cannot be empty.", "Alert", JOptionPane.WARNING_MESSAGE);
-        } //add exception for minimun string lenght
-        else if (CostTextField.getText().equals("")) {
-            JOptionPane.showMessageDialog(CenterPanelAdd, "Cost cannot be empty.", "Alert", JOptionPane.WARNING_MESSAGE);
-        } else if (SellingTextField.getText().equals("")) {
-            JOptionPane.showMessageDialog(CenterPanelAdd, "Selling cannot be empty.", "Alert", JOptionPane.WARNING_MESSAGE);
-        } else if (QuantityText.getText().equals("")) {
-            JOptionPane.showMessageDialog(CenterPanelAdd, "Quantity cannot be empty.", "Alert", JOptionPane.WARNING_MESSAGE);
-        } else {
-
-            db.insertRowSql(ItemNameTextField.getText(), Integer.valueOf(CostTextField.getText()),
-                    Integer.valueOf(SellingTextField.getText()), Integer.valueOf(QuantityText.getText()), 0, 0);            
-            Object tbData[] = {ItemNameTextField.getText(), Integer.valueOf(CostTextField.getText()),
-                Integer.valueOf(SellingTextField.getText()), Integer.valueOf(QuantityText.getText()), 0, 0};
-            tblModel.addRow(tbData);
-            jDialogAdd.dispose();
-        }
-    }//GEN-LAST:event_ButtonAddAddActionPerformed
-
-    private void ButtonCancelAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonCancelAddActionPerformed
-        jDialogAdd.dispose();
-    }//GEN-LAST:event_ButtonCancelAddActionPerformed
-
-    private void CostTextFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CostTextFieldKeyTyped
-        char c = evt.getKeyChar();
-        if (!Character.isDigit(c)) {
-            evt.consume();
-        }
-    }//GEN-LAST:event_CostTextFieldKeyTyped
-
-    private void SellingTextFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SellingTextFieldKeyTyped
-        char c = evt.getKeyChar();
-        if (!Character.isDigit(c)) {
-            evt.consume();
-        }
-    }//GEN-LAST:event_SellingTextFieldKeyTyped
-
-    private void jButtonMinusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMinusActionPerformed
-        if (!QuantityText.getText().equals("")) {
-            if (Integer.valueOf(QuantityText.getText()) != 0) {
-                int number = Integer.valueOf(QuantityText.getText());
-                number -= 1;
-                QuantityText.setText(Integer.toString(number));
-            }
-        }
-    }//GEN-LAST:event_jButtonMinusActionPerformed
-
-    private void QuantityTextKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_QuantityTextKeyTyped
-        char c = evt.getKeyChar();
-        if (!Character.isDigit(c)) {
-            evt.consume();
-        }
-
-    }//GEN-LAST:event_QuantityTextKeyTyped
-
-    private void jButtonPlusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPlusActionPerformed
-        if (!QuantityText.getText().equals("")) {
-            int number = Integer.valueOf(QuantityText.getText());
-            number += 1;
-            QuantityText.setText(Integer.toString(number));
-        }
-    }//GEN-LAST:event_jButtonPlusActionPerformed
 
     //End of Add Dialogue Components
 
     private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
-        System.out.println(InventoryTable.getSelectedRow());
         if (InventoryTable.getSelectedRow() == -1) {
             System.out.println("no record");
         } else {
-            db.deleteRow(tblModel.getValueAt(InventoryTable.getSelectedRow(), 6).toString());
-            System.out.println(tblModel.getValueAt(InventoryTable.getSelectedRow(), 6).toString());
+            db.deleteRow(tblModel.getValueAt(InventoryTable.getSelectedRow(), 0).toString());
             tblModel.removeRow(InventoryTable.getSelectedRow());
-
         }
 
 
     }//GEN-LAST:event_jButtonDeleteActionPerformed
-
-    private void ButtonAddUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAddUpdateActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ButtonAddUpdateActionPerformed
-
-    private void ButtonCancelUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonCancelUpdateActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ButtonCancelUpdateActionPerformed
-
-    private void CostTextFieldUpdateKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CostTextFieldUpdateKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CostTextFieldUpdateKeyTyped
-
-    private void SellingTextFieldUpdateKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SellingTextFieldUpdateKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_SellingTextFieldUpdateKeyTyped
-
-    private void jButtonMinus1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMinus1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonMinus1ActionPerformed
-
-    private void QuantityText1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_QuantityText1KeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_QuantityText1KeyTyped
-
-    private void jButtonPlus1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPlus1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonPlus1ActionPerformed
 //End Of Add Dialogue Components
     /**
      * @param args the command line arguments
@@ -621,58 +212,18 @@ public class MainPageGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel BottomPanel;
-    private javax.swing.JPanel BottomPanelAdd;
-    private javax.swing.JPanel BottomPanelAdd1;
-    private javax.swing.JButton ButtonAddAdd;
-    private javax.swing.JButton ButtonAddUpdate;
-    private javax.swing.JButton ButtonCancelAdd;
-    private javax.swing.JButton ButtonCancelUpdate;
-    private javax.swing.JPanel CenterPanelAdd;
-    private javax.swing.JPanel CenterPanelAdd1;
-    private javax.swing.JLabel CostLabel;
-    private javax.swing.JLabel CostLabel1;
-    private javax.swing.JTextField CostTextField;
-    private javax.swing.JTextField CostTextFieldUpdate;
+    private javax.swing.JPanel ButtonPanel;
     private javax.swing.JLabel IconLabel;
-    private javax.swing.JTable InventoryTable;
-    private javax.swing.JLabel ItemNameLabel;
-    private javax.swing.JLabel ItemNameLabel1;
-    private javax.swing.JLabel ItemNameLabel2;
-    private javax.swing.JLabel ItemNameLabel3;
-    private javax.swing.JLabel ItemNameLabel4;
-    private javax.swing.JLabel ItemNameLabel5;
-    private javax.swing.JTextField ItemNameTextField;
-    private javax.swing.JTextField ItemNameTextFieldUpdate;
-    private javax.swing.JPanel QuantityField;
-    private javax.swing.JPanel QuantityFieldUpdate;
-    private javax.swing.JLabel QuantityLabel;
-    private javax.swing.JLabel QuantityLabel1;
-    private javax.swing.JTextField QuantityText;
-    private javax.swing.JTextField QuantityText1;
-    private javax.swing.JLabel SellingLabel;
-    private javax.swing.JLabel SellingLabel1;
-    private javax.swing.JTextField SellingTextField;
-    private javax.swing.JTextField SellingTextFieldUpdate;
-    private javax.swing.JPanel TopPanelAdd;
-    private javax.swing.JPanel TopPanelAdd1;
+    public javax.swing.JTable InventoryTable;
+    private javax.swing.JPanel NumbersPanel;
     private javax.swing.JButton jButtonAdd;
     private javax.swing.JButton jButtonDelete;
-    private javax.swing.JButton jButtonMinus;
-    private javax.swing.JButton jButtonMinus1;
-    private javax.swing.JButton jButtonPlus;
-    private javax.swing.JButton jButtonPlus1;
     private javax.swing.JButton jButtonUpdate;
-    private javax.swing.JDialog jDialogAdd;
-    private javax.swing.JDialog jDialogUpdate;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
     // End of variables declaration//GEN-END:variables
 }
