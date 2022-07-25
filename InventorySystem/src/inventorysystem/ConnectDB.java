@@ -134,6 +134,25 @@ public class ConnectDB {
             Logger.getLogger(ConnectDB.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    public void updateRow(String id, String name, String type, int cost,int selling, int quantity,int total_inventory){
+        try {
+
+            String sql = "UPDATE Inventory \n"
+                    + "SET name = '"+name+"',\n"
+                    + "type = '"+type+"',\n"
+                    + "cost = "+cost+",\n"
+                    + "selling = "+selling+",\n"
+                    + "quantity = "+quantity+",\n"
+                    + "total_inventory = "+total_inventory+"\n"
+                    + "WHERE ID = " + id + ";";
+            statement = connection.createStatement();
+             statement.executeUpdate(sql);
+            System.out.println("update sql");
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnectDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
 
     public String getLastRowID() {
         try {
@@ -154,4 +173,16 @@ public class ConnectDB {
         return null;
     }
 
+    public String getItem(String id, String item) {
+        try {
+            String sql = "SELECT *  FROM Inventory\n"
+                    + "WHERE ID = " + id + ";";
+            statement = connection.createStatement();
+            result = statement.executeQuery(sql);
+            return result.getString(item);
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnectDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
 }

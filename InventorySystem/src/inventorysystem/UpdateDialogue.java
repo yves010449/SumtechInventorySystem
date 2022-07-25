@@ -5,25 +5,31 @@
 package inventorysystem;
 
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author yves0
  */
-public class AddDialogue extends javax.swing.JDialog {
+public class UpdateDialogue extends javax.swing.JDialog {
 
     /**
-     * Creates new form AddDialogue
+     * Creates new form UpdateDialogue
      */
     ConnectDB db;
     DefaultTableModel tblModel;
+    JTable table;
+    String id;
 
-    public AddDialogue(java.awt.Frame parent, boolean modal, ConnectDB db, DefaultTableModel tblModel) {
+    public UpdateDialogue(java.awt.Frame parent, boolean modal, ConnectDB db, DefaultTableModel tblModel, String id, JTable table) {
         super(parent, modal);
+        this.table = table;
         this.db = db;
-        this.tblModel = (DefaultTableModel)tblModel;
+        this.tblModel = (DefaultTableModel) tblModel;
+        this.id = id;
         initComponents();
+        setValues();
     }
 
     /**
@@ -59,7 +65,8 @@ public class AddDialogue extends javax.swing.JDialog {
         TotalInventoryTextField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Add Item");
+        setTitle("Update an Item");
+        setAlwaysOnTop(true);
         setResizable(false);
 
         TopPanelAdd.setBackground(new java.awt.Color(0, 0, 102));
@@ -80,7 +87,7 @@ public class AddDialogue extends javax.swing.JDialog {
         BottomPanelAdd.setPreferredSize(new java.awt.Dimension(50, 50));
         BottomPanelAdd.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 10, 12));
 
-        ButtonAddAdd.setText("Add");
+        ButtonAddAdd.setText("Update");
         ButtonAddAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ButtonAddAddActionPerformed(evt);
@@ -254,6 +261,15 @@ public class AddDialogue extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    public void setValues() {
+        ItemNameTextField.setText(db.getItem(id, "name"));
+        CostTextField.setText(db.getItem(id, "cost"));
+        SellingTextField.setText(db.getItem(id, "selling"));
+        QuantityText.setText(db.getItem(id, "quantity"));
+        ItemTypeTextField.setText(db.getItem(id, "type"));
+    }
+
+
     private void ButtonAddAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAddAddActionPerformed
         if (ItemNameTextField.getText().equals("")) {
             JOptionPane.showMessageDialog(CenterPanelAdd, "Item name cannot be empty.", "Alert", JOptionPane.WARNING_MESSAGE);
@@ -267,13 +283,18 @@ public class AddDialogue extends javax.swing.JDialog {
         } else if (ItemTypeTextField.getText().equals("")) {
             JOptionPane.showMessageDialog(CenterPanelAdd, "Item Type cannot be empty.", "Alert", JOptionPane.WARNING_MESSAGE);
         } else {
+            int total_inventory =  Integer.valueOf(SellingTextField.getText()) * Integer.valueOf(QuantityText.getText());
+            db.updateRow(id, ItemNameTextField.getText(), ItemTypeTextField.getText(), Integer.valueOf(CostTextField.getText()), Integer.valueOf(SellingTextField.getText()), Integer.valueOf(QuantityText.getText()),total_inventory);
+            
+            Object tbData[] = {Integer.valueOf(db.getItem(id, "ID")), ItemNameTextField.getText(), ItemTypeTextField.getText(), Integer.valueOf(CostTextField.getText()),
+                Integer.valueOf(SellingTextField.getText()), Integer.valueOf(QuantityText.getText()),total_inventory};            
+            for(int i = 0;i<db.getColumnCount();i++){       
+                tblModel.setValueAt(tbData[i], table.getSelectedRow(), i);
+                
+            }
+            
 
-            db.insertRowSql(ItemNameTextField.getText(), ItemTypeTextField.getText(), Integer.valueOf(CostTextField.getText()),
-                    Integer.valueOf(SellingTextField.getText()), Integer.valueOf(QuantityText.getText()), Integer.valueOf(SellingTextField.getText()) * Integer.valueOf(QuantityText.getText()));
-            Object tbData[] = {db.getLastRowID(),ItemNameTextField.getText(), ItemTypeTextField.getText(), Integer.valueOf(CostTextField.getText()),
-                Integer.valueOf(SellingTextField.getText()), Integer.valueOf(QuantityText.getText()), Integer.valueOf(SellingTextField.getText()) * Integer.valueOf(QuantityText.getText())};
-            tblModel.addRow(tbData);
-            repaint();
+            table.repaint();
             dispose();
         }
     }//GEN-LAST:event_ButtonAddAddActionPerformed
@@ -282,11 +303,15 @@ public class AddDialogue extends javax.swing.JDialog {
         dispose();
     }//GEN-LAST:event_ButtonCancelAddActionPerformed
 
+    private void CostTextFieldPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_CostTextFieldPropertyChange
+
+    }//GEN-LAST:event_CostTextFieldPropertyChange
+
     private void CostTextFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CostTextFieldKeyTyped
         char c = evt.getKeyChar();
         if (!Character.isDigit(c)) {
             evt.consume();
-        }       
+        }
     }//GEN-LAST:event_CostTextFieldKeyTyped
 
     private void SellingTextFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SellingTextFieldKeyTyped
@@ -328,10 +353,6 @@ public class AddDialogue extends javax.swing.JDialog {
     private void TotalInventoryTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TotalInventoryTextFieldActionPerformed
 
     }//GEN-LAST:event_TotalInventoryTextFieldActionPerformed
-
-    private void CostTextFieldPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_CostTextFieldPropertyChange
-        
-    }//GEN-LAST:event_CostTextFieldPropertyChange
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

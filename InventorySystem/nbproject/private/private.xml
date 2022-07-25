@@ -5,8 +5,9 @@
         <group>
             <file>file:/C:/Users/yves0/Documents/NetBeansProjects/SumtechInventorySystem/InventorySystem/src/inventorysystem/MainPageGUI.java</file>
             <file>file:/C:/Users/yves0/Documents/NetBeansProjects/SumtechInventorySystem/InventorySystem/src/inventorysystem/ConnectDB.java</file>
-            <file>file:/C:/Users/yves0/Documents/NetBeansProjects/SumtechInventorySystem/InventorySystem/src/inventorysystem/InventoryTable.java</file>
+            <file>file:/C:/Users/yves0/Documents/NetBeansProjects/SumtechInventorySystem/InventorySystem/src/inventorysystem/AddDialogue.java</file>
             <file>file:/C:/Users/yves0/Documents/NetBeansProjects/SumtechInventorySystem/InventorySystem/src/inventorysystem/InventorySystem.java</file>
+            <file>file:/C:/Users/yves0/Documents/NetBeansProjects/SumtechInventorySystem/InventorySystem/src/inventorysystem/UpdateDialogue.java</file>
         </group>
     </open-files>
 </project-private>

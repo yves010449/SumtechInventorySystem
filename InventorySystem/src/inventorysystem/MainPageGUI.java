@@ -189,8 +189,14 @@ public class MainPageGUI extends javax.swing.JFrame {
 
     private void jButtonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateActionPerformed
         System.out.println("update");
-
-        System.out.println(tblModel.getValueAt(InventoryTable.getSelectedRow(), 0));
+        if(InventoryTable.getSelectedRow() == -1){
+             System.out.println("no record");
+        }else{
+            JDialog dialog = new UpdateDialogue(this, true, db, tblModel,tblModel.getValueAt(InventoryTable.getSelectedRow(), 0).toString(),InventoryTable);
+        dialog.setVisible(true);
+        }
+        
+        
     }//GEN-LAST:event_jButtonUpdateActionPerformed
 
     //End of Add Dialogue Components
