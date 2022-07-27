@@ -21,7 +21,7 @@ public class ConnectDB {
     String jdbcUrl = "jdbc:sqlite:src//Inventory";
 
     public Object[][] data;
-
+    public String[] itemData = {"1"};
     ConnectDB() {
 
         try {
@@ -121,6 +121,19 @@ public class ConnectDB {
             Logger.getLogger(ConnectDB.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public String getTotalInventorySum(){
+         try {
+
+            String sql = "SELECT SUM(total_inventory)  FROM Inventory";
+            statement = connection.createStatement();
+            result = statement.executeQuery(sql);      
+            return result.getString(1);
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnectDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         return null;
+    }
 
     public void deleteRow(String id) {
         try {
@@ -187,6 +200,35 @@ public class ConnectDB {
     }
     
     public void createItemTypeDatabase(){
+        try{
+             String sql = "CREATE TABLE IF NOT EXISTS ItemType (\n"
+                    + "   name TEXT NOT NULL"                 
+                    + ");";
+            statement = connection.createStatement();
+            statement.executeUpdate(sql);
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(ConnectDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+           
+    }
+    
+    public void getItemTypeRows() {
+        try {
+            itemData = new String[9];
+            String sql = "Select rowid, * FROM Type";
+            statement = connection.createStatement();
+            result = statement.executeQuery(sql);
+            int i = 0;
+            while (result.next()) {               
+                itemData[i] = result.getString("name");
+                i++;
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnectDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }
     

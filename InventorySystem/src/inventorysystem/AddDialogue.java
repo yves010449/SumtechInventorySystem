@@ -23,7 +23,9 @@ public class AddDialogue extends javax.swing.JDialog {
         super(parent, modal);
         this.db = db;
         this.tblModel = (DefaultTableModel)tblModel;
+        db.createItemTypeDatabase();
         initComponents();
+        
     }
 
     /**
@@ -183,7 +185,7 @@ public class AddDialogue extends javax.swing.JDialog {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select type", "Add type" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(db.itemData));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);

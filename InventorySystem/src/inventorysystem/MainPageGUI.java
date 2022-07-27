@@ -7,6 +7,8 @@ package inventorysystem;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -23,6 +25,8 @@ public class MainPageGUI extends javax.swing.JFrame {
         initComponents();
         tblModel = (DefaultTableModel) InventoryTable.getModel();
         db.getSqlRows();
+        setSum();
+
     }
 
     /**
@@ -46,9 +50,9 @@ public class MainPageGUI extends javax.swing.JFrame {
         jButtonDelete = new javax.swing.JButton();
         NumbersPanel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        jLabelSum = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        jLabelTotalInventory = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sumtech Inventory System");
@@ -60,7 +64,6 @@ public class MainPageGUI extends javax.swing.JFrame {
 
         IconLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/inventorysystem/Res/IconSumtech.png"))); // NOI18N
 
-        jTextField1.setText("jTextField1");
         jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTextField1KeyReleased(evt);
@@ -74,9 +77,9 @@ public class MainPageGUI extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(IconLabel)
-                .addGap(70, 70, 70)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(95, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 144, Short.MAX_VALUE)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -87,8 +90,8 @@ public class MainPageGUI extends javax.swing.JFrame {
                         .addComponent(IconLabel)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(23, 23, 23))))
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24))))
         );
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.PAGE_START);
@@ -165,15 +168,15 @@ public class MainPageGUI extends javax.swing.JFrame {
         jLabel2.setText("Overall Total Inventory:   ");
         NumbersPanel.add(jLabel2);
 
-        jLabel3.setText("0");
-        NumbersPanel.add(jLabel3);
+        jLabelSum.setText("0");
+        NumbersPanel.add(jLabelSum);
 
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel6.setText("Overall Total Items:   ");
         NumbersPanel.add(jLabel6);
 
-        jLabel7.setText("0");
-        NumbersPanel.add(jLabel7);
+        jLabelTotalInventory.setText("0");
+        NumbersPanel.add(jLabelTotalInventory);
 
         javax.swing.GroupLayout BottomPanelLayout = new javax.swing.GroupLayout(BottomPanel);
         BottomPanel.setLayout(BottomPanelLayout);
@@ -220,11 +223,11 @@ public class MainPageGUI extends javax.swing.JFrame {
         if (InventoryTable.getSelectedRow() == -1) {
             showNoRecordsDialogue();
         } else {
-            if (JOptionPane.showConfirmDialog(null, "Are you sure to delete "+tblModel.getValueAt(InventoryTable.getSelectedRow(), 1).toString(), "CONFIRM DELETE",
+            if (JOptionPane.showConfirmDialog(null, "Are you sure to delete " + tblModel.getValueAt(InventoryTable.getSelectedRow(), 1).toString(), "DELETE",
                     JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
                 db.deleteRow(tblModel.getValueAt(InventoryTable.getSelectedRow(), 0).toString());
                 tblModel.removeRow(InventoryTable.getSelectedRow());
-            } 
+            }
         }
     }//GEN-LAST:event_jButtonDeleteActionPerformed
 
@@ -234,15 +237,24 @@ public class MainPageGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1KeyReleased
 
     private void showNoRecordsDialogue() {
-        JOptionPane.showMessageDialog(this, "No Record Selected", "Warning",
-        JOptionPane.WARNING_MESSAGE);
+        JOptionPane.showMessageDialog(this, "No record selected", "Warning",
+                JOptionPane.WARNING_MESSAGE);
     }
-    
-    private void filter(String query){
+
+    private void filter(String query) {
         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(tblModel);
         InventoryTable.setRowSorter(tr);
-        
         tr.setRowFilter(RowFilter.regexFilter(query));
+    }
+
+    private void setSum() {
+        jLabelSum.setText(db.getTotalInventorySum());
+        jLabelTotalInventory.setText(Integer.toString(db.getRowCount()));
+                InventoryTable.getModel().addTableModelListener(new TableModelListener() {
+            public void tableChanged(TableModelEvent e) {   
+                setSum();
+            }
+        });
     }
 
 
@@ -256,9 +268,9 @@ public class MainPageGUI extends javax.swing.JFrame {
     private javax.swing.JButton jButtonDelete;
     private javax.swing.JButton jButtonUpdate;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabelSum;
+    private javax.swing.JLabel jLabelTotalInventory;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextField1;
