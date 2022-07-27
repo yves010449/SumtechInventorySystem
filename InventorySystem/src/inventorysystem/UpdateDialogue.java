@@ -7,6 +7,7 @@ package inventorysystem;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -22,14 +23,16 @@ public class UpdateDialogue extends javax.swing.JDialog {
     JTable table;
     String id;
 
-    public UpdateDialogue(java.awt.Frame parent, boolean modal, ConnectDB db, DefaultTableModel tblModel, String id, JTable table) {
+    public UpdateDialogue(java.awt.Frame parent, boolean modal, ConnectDB db, DefaultTableModel tblModel, String id, JTable table) {     
         super(parent, modal);
+        System.out.println(id);
         this.table = table;
         this.db = db;
         this.tblModel = (DefaultTableModel) tblModel;
         this.id = id;
         initComponents();
         setValues();
+        
     }
 
     /**

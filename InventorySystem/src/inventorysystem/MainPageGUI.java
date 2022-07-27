@@ -6,7 +6,9 @@ package inventorysystem;
 
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -34,6 +36,7 @@ public class MainPageGUI extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         IconLabel = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         InventoryTable = new javax.swing.JTable();
         BottomPanel = new javax.swing.JPanel();
@@ -57,6 +60,13 @@ public class MainPageGUI extends javax.swing.JFrame {
 
         IconLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/inventorysystem/Res/IconSumtech.png"))); // NOI18N
 
+        jTextField1.setText("jTextField1");
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField1KeyReleased(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -64,18 +74,26 @@ public class MainPageGUI extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(IconLabel)
-                .addContainerGap(340, Short.MAX_VALUE))
+                .addGap(70, 70, 70)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(95, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(IconLabel)
-                .addContainerGap())
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(IconLabel)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(23, 23, 23))))
         );
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.PAGE_START);
 
+        InventoryTable.setAutoCreateRowSorter(true);
         InventoryTable.setModel(new javax.swing.table.DefaultTableModel(
             db.data,
             new String [] {
@@ -92,7 +110,7 @@ public class MainPageGUI extends javax.swing.JFrame {
                 java.lang.Integer.class,
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, true, false, false, false
+                false, false, false, false, false, true, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -139,6 +157,7 @@ public class MainPageGUI extends javax.swing.JFrame {
         });
         ButtonPanel.add(jButtonDelete);
 
+        NumbersPanel.setBorder(javax.swing.BorderFactory.createCompoundBorder());
         NumbersPanel.setPreferredSize(new java.awt.Dimension(201, 100));
         NumbersPanel.setLayout(new java.awt.GridLayout(2, 2));
 
@@ -162,8 +181,8 @@ public class MainPageGUI extends javax.swing.JFrame {
             BottomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BottomPanelLayout.createSequentialGroup()
                 .addComponent(ButtonPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addComponent(NumbersPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(NumbersPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         BottomPanelLayout.setVerticalGroup(
             BottomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -182,39 +201,50 @@ public class MainPageGUI extends javax.swing.JFrame {
 
     private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed
         System.out.println("add");
-
         JDialog dialog = new AddDialogue(this, true, db, tblModel);
         dialog.setVisible(true);
     }//GEN-LAST:event_jButtonAddActionPerformed
 
     private void jButtonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateActionPerformed
         System.out.println("update");
-        if(InventoryTable.getSelectedRow() == -1){
-             System.out.println("no record");
-        }else{
-            JDialog dialog = new UpdateDialogue(this, true, db, tblModel,tblModel.getValueAt(InventoryTable.getSelectedRow(), 0).toString(),InventoryTable);
-        dialog.setVisible(true);
+        if (InventoryTable.getSelectedRow() == -1) {
+            showNoRecordsDialogue();
+        } else {
+            JDialog dialog = new UpdateDialogue(this, true, db, tblModel, tblModel.getValueAt(InventoryTable.getSelectedRow(), 0).toString(), InventoryTable);
+            dialog.setVisible(true);
         }
-        
-        
     }//GEN-LAST:event_jButtonUpdateActionPerformed
 
-    //End of Add Dialogue Components
 
     private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
         if (InventoryTable.getSelectedRow() == -1) {
-            System.out.println("no record");
+            showNoRecordsDialogue();
         } else {
-            db.deleteRow(tblModel.getValueAt(InventoryTable.getSelectedRow(), 0).toString());
-            tblModel.removeRow(InventoryTable.getSelectedRow());
+            if (JOptionPane.showConfirmDialog(null, "Are you sure to delete "+tblModel.getValueAt(InventoryTable.getSelectedRow(), 1).toString(), "CONFIRM DELETE",
+                    JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                db.deleteRow(tblModel.getValueAt(InventoryTable.getSelectedRow(), 0).toString());
+                tblModel.removeRow(InventoryTable.getSelectedRow());
+            } 
         }
-
-
     }//GEN-LAST:event_jButtonDeleteActionPerformed
-//End Of Add Dialogue Components
-    /**
-     * @param args the command line arguments
-     */
+
+    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
+        String query = jTextField1.getText();
+        filter(query);
+    }//GEN-LAST:event_jTextField1KeyReleased
+
+    private void showNoRecordsDialogue() {
+        JOptionPane.showMessageDialog(this, "No Record Selected", "Warning",
+        JOptionPane.WARNING_MESSAGE);
+    }
+    
+    private void filter(String query){
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(tblModel);
+        InventoryTable.setRowSorter(tr);
+        
+        tr.setRowFilter(RowFilter.regexFilter(query));
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel BottomPanel;
@@ -231,5 +261,6 @@ public class MainPageGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

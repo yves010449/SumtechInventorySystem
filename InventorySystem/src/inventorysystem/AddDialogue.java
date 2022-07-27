@@ -54,9 +54,9 @@ public class AddDialogue extends javax.swing.JDialog {
         jButtonPlus = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         ItemNameLabel1 = new javax.swing.JLabel();
-        ItemTypeTextField = new javax.swing.JTextField();
         ItemNameLabel2 = new javax.swing.JLabel();
         TotalInventoryTextField = new javax.swing.JTextField();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Add Item");
@@ -173,12 +173,6 @@ public class AddDialogue extends javax.swing.JDialog {
         ItemNameLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         ItemNameLabel1.setText("Item Type");
 
-        ItemTypeTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ItemTypeTextFieldActionPerformed(evt);
-            }
-        });
-
         ItemNameLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         ItemNameLabel2.setText("Total Inventory");
 
@@ -189,35 +183,40 @@ public class AddDialogue extends javax.swing.JDialog {
             }
         });
 
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select type", "Add type" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(85, 85, 85)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(ItemNameLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ItemNameLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(101, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ItemNameLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ItemNameLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(ItemTypeTextField)
-                    .addComponent(TotalInventoryTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(86, Short.MAX_VALUE))
+                    .addComponent(TotalInventoryTextField)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(70, 70, 70))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(ItemTypeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(TotalInventoryTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(ItemNameLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(ItemNameLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addGap(42, 42, 42)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                    .addComponent(ItemNameLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TotalInventoryTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ItemNameLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(47, 47, 47))
         );
 
         CenterPanelAdd.add(jPanel3);
@@ -238,7 +237,7 @@ public class AddDialogue extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 360, Short.MAX_VALUE)
+            .addGap(0, 436, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -264,13 +263,13 @@ public class AddDialogue extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(CenterPanelAdd, "Selling cannot be empty.", "Alert", JOptionPane.WARNING_MESSAGE);
         } else if (QuantityText.getText().equals("")) {
             JOptionPane.showMessageDialog(CenterPanelAdd, "Quantity cannot be empty.", "Alert", JOptionPane.WARNING_MESSAGE);
-        } else if (ItemTypeTextField.getText().equals("")) {
-            JOptionPane.showMessageDialog(CenterPanelAdd, "Item Type cannot be empty.", "Alert", JOptionPane.WARNING_MESSAGE);
+        } else if (jComboBox1.getSelectedItem().equals("Add type")||jComboBox1.getSelectedItem().equals("Select type")) {
+            JOptionPane.showMessageDialog(CenterPanelAdd, "Item type cannot be empty.", "Alert", JOptionPane.WARNING_MESSAGE);
         } else {
 
-            db.insertRowSql(ItemNameTextField.getText(), ItemTypeTextField.getText(), Integer.valueOf(CostTextField.getText()),
+            db.insertRowSql(ItemNameTextField.getText(), jComboBox1.getSelectedItem().toString(), Integer.valueOf(CostTextField.getText()),
                     Integer.valueOf(SellingTextField.getText()), Integer.valueOf(QuantityText.getText()), Integer.valueOf(SellingTextField.getText()) * Integer.valueOf(QuantityText.getText()));
-            Object tbData[] = {db.getLastRowID(),ItemNameTextField.getText(), ItemTypeTextField.getText(), Integer.valueOf(CostTextField.getText()),
+            Object tbData[] = {db.getLastRowID(),ItemNameTextField.getText(), jComboBox1.getSelectedItem().toString(), Integer.valueOf(CostTextField.getText()),
                 Integer.valueOf(SellingTextField.getText()), Integer.valueOf(QuantityText.getText()), Integer.valueOf(SellingTextField.getText()) * Integer.valueOf(QuantityText.getText())};
             tblModel.addRow(tbData);
             repaint();
@@ -321,10 +320,6 @@ public class AddDialogue extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_jButtonPlusActionPerformed
 
-    private void ItemTypeTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItemTypeTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ItemTypeTextFieldActionPerformed
-
     private void TotalInventoryTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TotalInventoryTextFieldActionPerformed
 
     }//GEN-LAST:event_TotalInventoryTextFieldActionPerformed
@@ -332,6 +327,20 @@ public class AddDialogue extends javax.swing.JDialog {
     private void CostTextFieldPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_CostTextFieldPropertyChange
         
     }//GEN-LAST:event_CostTextFieldPropertyChange
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        String s = (String) jComboBox1.getSelectedItem();
+        if(s.equals("Add type")){
+            String m = JOptionPane.showInputDialog(null,"Enter item type name","Item name",JOptionPane.INFORMATION_MESSAGE);
+            if(m.equals("")){
+                JOptionPane.showMessageDialog(CenterPanelAdd, "Item name cannot be empty.", "Alert", JOptionPane.WARNING_MESSAGE);
+            }
+            else{
+                jComboBox1.addItem(m);
+            }   
+            
+        }
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -345,7 +354,6 @@ public class AddDialogue extends javax.swing.JDialog {
     private javax.swing.JLabel ItemNameLabel1;
     private javax.swing.JLabel ItemNameLabel2;
     private javax.swing.JTextField ItemNameTextField;
-    private javax.swing.JTextField ItemTypeTextField;
     private javax.swing.JPanel QuantityField;
     private javax.swing.JLabel QuantityLabel;
     private javax.swing.JTextField QuantityText;
@@ -355,6 +363,7 @@ public class AddDialogue extends javax.swing.JDialog {
     private javax.swing.JTextField TotalInventoryTextField;
     private javax.swing.JButton jButtonMinus;
     private javax.swing.JButton jButtonPlus;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables

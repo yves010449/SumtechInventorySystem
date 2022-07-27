@@ -185,4 +185,9 @@ public class ConnectDB {
         }
         return null;
     }
+    
+    public void createItemTypeDatabase(){
+        
+    }
+    
 }
