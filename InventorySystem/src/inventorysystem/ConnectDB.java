@@ -21,7 +21,7 @@ public class ConnectDB {
     String jdbcUrl = "jdbc:sqlite:src//Inventory";
 
     public Object[][] data;
-    public String[] itemData = {"1"};
+    public String[] itemData;
     ConnectDB() {
 
         try {
@@ -40,7 +40,7 @@ public class ConnectDB {
             statement.executeUpdate(sql);
             System.out.println("database created");
             getSqlRows();
-
+            
         } catch (SQLException ex) {
             System.out.println("Connection Error");
             System.out.println(ex);
@@ -65,7 +65,8 @@ public class ConnectDB {
             statement = connection.createStatement();
             result = statement.executeQuery(sql);
             int numberOfRows = result.getInt("recordCount");
-            return numberOfRows;
+            
+            return numberOfRows;         
         } catch (SQLException ex) {
             Logger.getLogger(ConnectDB.class.getName()).log(Level.SEVERE, null, ex);
             return -1;
@@ -102,8 +103,7 @@ public class ConnectDB {
                 data[i][6] = result.getString("total_inventory");
                 i++;
 
-            }
-
+            }          
         } catch (SQLException ex) {
             Logger.getLogger(ConnectDB.class.getName()).log(Level.SEVERE, null, ex);
 
@@ -201,11 +201,16 @@ public class ConnectDB {
     
     public void createItemTypeDatabase(){
         try{
+            connection.close();
+            connection = DriverManager.getConnection("jdbc:sqlite:src//ItemType");
              String sql = "CREATE TABLE IF NOT EXISTS ItemType (\n"
                     + "   name TEXT NOT NULL"                 
                     + ");";
             statement = connection.createStatement();
             statement.executeUpdate(sql);
+            connection.close();
+            getItemTypeRows();
+            connection = DriverManager.getConnection(jdbcUrl);
         }
         catch (SQLException ex) {
             Logger.getLogger(ConnectDB.class.getName()).log(Level.SEVERE, null, ex);
@@ -215,21 +220,53 @@ public class ConnectDB {
     }
     
     public void getItemTypeRows() {
-        try {
-            itemData = new String[9];
-            String sql = "Select rowid, * FROM Type";
+        try {         
+            itemData = new String[getItemTypeRowCount()+2];
+            String sql = "Select rowid, * FROM ItemType";
             statement = connection.createStatement();
             result = statement.executeQuery(sql);
-            int i = 0;
+            int i = 1;
             while (result.next()) {               
                 itemData[i] = result.getString("name");
                 i++;
             }
-
+            System.out.println(getItemTypeRowCount()+2);
+            
+            itemData[0] = "Select type";
+            itemData[getItemTypeRowCount()+1] = "Add type";    
+            
         } catch (SQLException ex) {
             Logger.getLogger(ConnectDB.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+    }
+    public int getItemTypeRowCount() {
+        try {
+            connection = DriverManager.getConnection("jdbc:sqlite:src//ItemType");
+            String sql = "SELECT COUNT(*) As recordCount FROM ItemType";
+            statement = connection.createStatement();
+            result = statement.executeQuery(sql);
+            int numberOfRows = result.getInt("recordCount");      
+            connection.close();
+            connection = DriverManager.getConnection(jdbcUrl);
+            return numberOfRows;         
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnectDB.class.getName()).log(Level.SEVERE, null, ex);
+            return -1;
+        }
+    }
+    
+    public void insertRowItemType(String name) {
+        try {
+            connection.close();
+            connection = DriverManager.getConnection("jdbc:sqlite:src//ItemType");
+            String sql = "INSERT INTO ItemType VALUES('" + name + "');";
+            statement = connection.createStatement();
+            statement.executeUpdate(sql);
+            System.out.println("Insert");
+            connection = DriverManager.getConnection(jdbcUrl);
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnectDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }

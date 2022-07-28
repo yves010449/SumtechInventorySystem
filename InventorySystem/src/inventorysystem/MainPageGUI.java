@@ -26,7 +26,8 @@ public class MainPageGUI extends javax.swing.JFrame {
         tblModel = (DefaultTableModel) InventoryTable.getModel();
         db.getSqlRows();
         setSum();
-
+        //db.getItemTypeRows();
+        db.createItemTypeDatabase();
     }
 
     /**
@@ -172,7 +173,7 @@ public class MainPageGUI extends javax.swing.JFrame {
         NumbersPanel.add(jLabelSum);
 
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel6.setText("Overall Total Items:   ");
+        jLabel6.setText("Overall Total Records:   ");
         NumbersPanel.add(jLabel6);
 
         jLabelTotalInventory.setText("0");
@@ -243,8 +244,9 @@ public class MainPageGUI extends javax.swing.JFrame {
 
     private void filter(String query) {
         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(tblModel);
-        InventoryTable.setRowSorter(tr);
+        InventoryTable.setRowSorter(tr);      
         tr.setRowFilter(RowFilter.regexFilter(query));
+       
     }
 
     private void setSum() {

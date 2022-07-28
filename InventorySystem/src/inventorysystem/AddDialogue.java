@@ -22,10 +22,10 @@ public class AddDialogue extends javax.swing.JDialog {
     public AddDialogue(java.awt.Frame parent, boolean modal, ConnectDB db, DefaultTableModel tblModel) {
         super(parent, modal);
         this.db = db;
-        this.tblModel = (DefaultTableModel)tblModel;
+        this.tblModel = (DefaultTableModel) tblModel;
         db.createItemTypeDatabase();
         initComponents();
-        
+
     }
 
     /**
@@ -265,13 +265,13 @@ public class AddDialogue extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(CenterPanelAdd, "Selling cannot be empty.", "Alert", JOptionPane.WARNING_MESSAGE);
         } else if (QuantityText.getText().equals("")) {
             JOptionPane.showMessageDialog(CenterPanelAdd, "Quantity cannot be empty.", "Alert", JOptionPane.WARNING_MESSAGE);
-        } else if (jComboBox1.getSelectedItem().equals("Add type")||jComboBox1.getSelectedItem().equals("Select type")) {
+        } else if (jComboBox1.getSelectedItem().equals("Add type") || jComboBox1.getSelectedItem().equals("Select type")) {
             JOptionPane.showMessageDialog(CenterPanelAdd, "Item type cannot be empty.", "Alert", JOptionPane.WARNING_MESSAGE);
         } else {
 
             db.insertRowSql(ItemNameTextField.getText(), jComboBox1.getSelectedItem().toString(), Integer.valueOf(CostTextField.getText()),
                     Integer.valueOf(SellingTextField.getText()), Integer.valueOf(QuantityText.getText()), Integer.valueOf(SellingTextField.getText()) * Integer.valueOf(QuantityText.getText()));
-            Object tbData[] = {db.getLastRowID(),ItemNameTextField.getText(), jComboBox1.getSelectedItem().toString(), Integer.valueOf(CostTextField.getText()),
+            Object tbData[] = {db.getLastRowID(), ItemNameTextField.getText(), jComboBox1.getSelectedItem().toString(), Integer.valueOf(CostTextField.getText()),
                 Integer.valueOf(SellingTextField.getText()), Integer.valueOf(QuantityText.getText()), Integer.valueOf(SellingTextField.getText()) * Integer.valueOf(QuantityText.getText())};
             tblModel.addRow(tbData);
             repaint();
@@ -287,7 +287,7 @@ public class AddDialogue extends javax.swing.JDialog {
         char c = evt.getKeyChar();
         if (!Character.isDigit(c)) {
             evt.consume();
-        }       
+        }
     }//GEN-LAST:event_CostTextFieldKeyTyped
 
     private void SellingTextFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SellingTextFieldKeyTyped
@@ -327,20 +327,31 @@ public class AddDialogue extends javax.swing.JDialog {
     }//GEN-LAST:event_TotalInventoryTextFieldActionPerformed
 
     private void CostTextFieldPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_CostTextFieldPropertyChange
-        
+
     }//GEN-LAST:event_CostTextFieldPropertyChange
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         String s = (String) jComboBox1.getSelectedItem();
-        if(s.equals("Add type")){
-            String m = JOptionPane.showInputDialog(null,"Enter item type name","Item name",JOptionPane.INFORMATION_MESSAGE);
-            if(m.equals("")){
-                JOptionPane.showMessageDialog(CenterPanelAdd, "Item name cannot be empty.", "Alert", JOptionPane.WARNING_MESSAGE);
+        try {
+            if (s.equals("Add type")) {
+                String m = JOptionPane.showInputDialog(null, "Enter item type name", "Item name", JOptionPane.INFORMATION_MESSAGE);
+                if (m.equals("")) {
+                    JOptionPane.showMessageDialog(CenterPanelAdd, "Item name cannot be empty.", "Alert", JOptionPane.WARNING_MESSAGE);
+                } else {
+
+                    db.insertRowItemType(m);
+                    jComboBox1.removeAllItems();
+                    db.createItemTypeDatabase();
+                    jComboBox1.addItem("Select type");
+                    for (int i = 1; i < db.getItemTypeRowCount()-2; i++) {
+                        jComboBox1.addItem(db.itemData[i]);
+                    }
+                    jComboBox1.addItem("Add type");
+
+                }
             }
-            else{
-                jComboBox1.addItem(m);
-            }   
-            
+        } catch (Exception e) {
+            System.out.println(e);
         }
     }//GEN-LAST:event_jComboBox1ActionPerformed
 

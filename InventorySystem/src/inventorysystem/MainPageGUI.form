@@ -228,7 +228,7 @@
             <Component class="javax.swing.JLabel" name="jLabel6">
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="2"/>
-                <Property name="text" type="java.lang.String" value="Overall Total Items:   "/>
+                <Property name="text" type="java.lang.String" value="Overall Total Records:   "/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabelTotalInventory">
