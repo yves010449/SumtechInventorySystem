@@ -23,7 +23,7 @@ public class AddDialogue extends javax.swing.JDialog {
         super(parent, modal);
         this.db = db;
         this.tblModel = (DefaultTableModel) tblModel;
-        db.createItemTypeDatabase();
+        //db.createItemTypeDatabase();
         initComponents();
 
     }
@@ -185,7 +185,7 @@ public class AddDialogue extends javax.swing.JDialog {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(db.itemData));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select type", "Add type" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -329,7 +329,7 @@ public class AddDialogue extends javax.swing.JDialog {
     private void CostTextFieldPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_CostTextFieldPropertyChange
 
     }//GEN-LAST:event_CostTextFieldPropertyChange
-
+int count = 2;
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         String s = (String) jComboBox1.getSelectedItem();
         try {
@@ -339,14 +339,20 @@ public class AddDialogue extends javax.swing.JDialog {
                     JOptionPane.showMessageDialog(CenterPanelAdd, "Item name cannot be empty.", "Alert", JOptionPane.WARNING_MESSAGE);
                 } else {
 
-                    db.insertRowItemType(m);
-                    jComboBox1.removeAllItems();
-                    db.createItemTypeDatabase();
-                    jComboBox1.addItem("Select type");
+                    //db.insertRowItemType(m);
+                    //jComboBox1.removeAllItems();
+                    //db.createItemTypeDatabase();
+                    
+                    /*
                     for (int i = 1; i < db.getItemTypeRowCount()-2; i++) {
                         jComboBox1.addItem(db.itemData[i]);
-                    }
+                    }*/
+                    
+                    jComboBox1.removeItemAt(count-1);
+                    count++;
+                    jComboBox1.addItem(m.toUpperCase());
                     jComboBox1.addItem("Add type");
+                    
 
                 }
             }

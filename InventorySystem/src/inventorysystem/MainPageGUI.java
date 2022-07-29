@@ -27,7 +27,7 @@ public class MainPageGUI extends javax.swing.JFrame {
         db.getSqlRows();
         setSum();
         //db.getItemTypeRows();
-        db.createItemTypeDatabase();
+        //db.createItemTypeDatabase();
     }
 
     /**
@@ -235,6 +235,13 @@ public class MainPageGUI extends javax.swing.JFrame {
     private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
         String query = jTextField1.getText();
         filter(query);
+        if(query.equals("")){
+            state = true;
+        }
+        else{
+            state = false;
+        }
+        disableButton();
     }//GEN-LAST:event_jTextField1KeyReleased
 
     private void showNoRecordsDialogue() {
@@ -257,6 +264,12 @@ public class MainPageGUI extends javax.swing.JFrame {
                 setSum();
             }
         });
+    }
+    boolean state;
+    private void disableButton(){        
+        jButtonAdd.setEnabled(state);
+        jButtonUpdate.setEnabled(state);
+        jButtonDelete.setEnabled(state);
     }
 
 
