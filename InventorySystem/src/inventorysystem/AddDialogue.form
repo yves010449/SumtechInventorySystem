@@ -283,9 +283,18 @@
             <Component class="javax.swing.JComboBox" name="jComboBox1">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="2">
+                  <StringArray count="11">
                     <StringItem index="0" value="Select type"/>
-                    <StringItem index="1" value="Add type"/>
+                    <StringItem index="1" value="LAPTOP"/>
+                    <StringItem index="2" value="DESKTOP"/>
+                    <StringItem index="3" value="SPEAKER"/>
+                    <StringItem index="4" value="MOUSE"/>
+                    <StringItem index="5" value="KEYBOARD"/>
+                    <StringItem index="6" value="CABLES"/>
+                    <StringItem index="7" value="SSD"/>
+                    <StringItem index="8" value="HDD"/>
+                    <StringItem index="9" value="RADIO"/>
+                    <StringItem index="10" value="Add type"/>
                   </StringArray>
                 </Property>
               </Properties>

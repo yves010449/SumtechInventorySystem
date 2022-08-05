@@ -41,8 +41,8 @@ public class InventorySystem {
                     java.util.logging.Logger.getLogger(MainPageGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
                 }
                 db = new ConnectDB();
-                //new LoginGUI().setVisible(true);                  
-                new MainPageGUI().setVisible(true);
+                new LoginGUI().setVisible(true);                  
+                //new MainPageGUI().setVisible(true);
             }
         });
     }

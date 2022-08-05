@@ -4,6 +4,8 @@
  */
 package inventorysystem;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author yves0
@@ -80,7 +82,6 @@ public class LoginGUI extends javax.swing.JFrame {
         jLabel2.setMaximumSize(new java.awt.Dimension(150, 30));
         jLabel2.setPreferredSize(new java.awt.Dimension(150, 30));
 
-        jPasswordField1.setText("jPasswordField1");
         jPasswordField1.setPreferredSize(new java.awt.Dimension(150, 30));
 
         jButton1.setText("Login");
@@ -127,6 +128,7 @@ public class LoginGUI extends javax.swing.JFrame {
         getContentPane().add(CenterPanel, java.awt.BorderLayout.CENTER);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -134,47 +136,18 @@ public class LoginGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        new MainPageGUI().setVisible(true);
-        dispose();
+        String passText = new String(jPasswordField1.getPassword());
+        if(jTextField1.getText().equals("admin")&& passText.equals("admin")){
+            new MainPageGUI().setVisible(true);
+            dispose();
+        }else{
+            JOptionPane.showMessageDialog(this, "Incorrect UserName/Password",null,
+                JOptionPane.ERROR_MESSAGE);
+        }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LoginGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LoginGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LoginGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LoginGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new LoginGUI().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel CenterPanel;

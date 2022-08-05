@@ -185,7 +185,7 @@ public class AddDialogue extends javax.swing.JDialog {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select type", "Add type" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select type", "LAPTOP", "DESKTOP", "SPEAKER", "MOUSE", "KEYBOARD", "CABLES", "SSD", "HDD", "RADIO", "Add type" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -311,7 +311,7 @@ public class AddDialogue extends javax.swing.JDialog {
         char c = evt.getKeyChar();
         if (!Character.isDigit(c)) {
             evt.consume();
-        }
+        }       
     }//GEN-LAST:event_QuantityTextKeyTyped
 
     private void jButtonPlusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPlusActionPerformed

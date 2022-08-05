@@ -183,7 +183,7 @@ public class UpdateDialogue extends javax.swing.JDialog {
         ItemNameLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         ItemNameLabel1.setText("Item Type");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select type", "Add type" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select type", "LAPTOP", "DESKTOP", "SPEAKER", "MOUSE", "KEYBOARD", "CABLES", "SSD", "HDD", "RADIO", "Add type" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
